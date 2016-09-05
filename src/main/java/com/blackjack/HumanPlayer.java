@@ -1,10 +1,9 @@
 package com.blackjack;
 
-import java.util.Scanner;
 
 public class HumanPlayer extends Player {
 
-	HumanPlayer(String name) {
+	public HumanPlayer(String name) {
 		super(name);
 	}
 
@@ -32,7 +31,7 @@ public class HumanPlayer extends Player {
 				Game.ui.output(this.name + " now has " + handOfCards + " ( totals " + handOfCards.getScoreClosestTo21() + " )");
 				boolean bust = handOfCards.isBust();
 				if (bust) {
-					System.out.println(this.name + " went bust ");	
+					Game.ui.output(this.name + " went bust ");
 					handOfCards.setBust();
 					break;
 				}

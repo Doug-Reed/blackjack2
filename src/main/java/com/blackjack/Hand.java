@@ -4,36 +4,23 @@ import java.util.LinkedList;
 
 public class Hand {
 
-	LinkedList<Card> handOfCards;
+	private LinkedList<Card> handOfCards;
 
 	boolean isBust = false;
 
-	Hand(){
-		
-		//Deal two initial cards from the deck
+	public Hand(){
 		this.handOfCards = new LinkedList<Card>();
 	}
 
+
 	public void addCard(Card newCard) {
 
-		if (this.handOfCards.size() >= Game.MAX_CARDS_IN_HAND) {
-			//return Game.MAX_CARDS_IN_HAND;   //5 cards is the max you can have, don't add another
-		} else {
+		if (this.handOfCards.size() < Game.MAX_CARDS_IN_HAND) {
 			handOfCards.add(newCard);
-			//return handOfCards.size();
+		} else {
+			Game.ui.output("Can't have more than " + Game.MAX_CARDS_IN_HAND + " cards!");
 		}
 	}
-
-//	//Return the number of cards in the hand //TODO be given new card,
-//	public int takeNewCard(Deck deckOfCards){
-//		if (this.handOfCards.size() >= MAX_CARDS_IN_HAND) {
-//			return MAX_CARDS_IN_HAND;   //5 cards is the max you can have, don't add another
-//		} else {
-//		handOfCards.add(deckOfCards.deal());
-//		return handOfCards.size();
-//		}
-//
-//	}
 
 
 	public int size() {
@@ -59,7 +46,9 @@ public class Hand {
 	public int getScoreClosestTo21(){
 		
 		//Calculate highest score that doesn't go bust
-		//If player has gone bust, return the minimum score
+		//If player has gone bust, return 0
+
+		if (isBust) { return 0; }
 
 		int maxValid = 0;
 		int acesInHand = 0;
@@ -70,7 +59,6 @@ public class Hand {
 				if (c.specialTypeOfCard.equals(Card.ACE)) {
 					acesInHand++ ;
 				}
-				
 		}
 
 		//Is this max score a valid one? 
@@ -106,7 +94,6 @@ public class Hand {
 
 		if (score > Game.TARGET_SCORE) {
 			setBust();
-
 			return true;
 		}
 

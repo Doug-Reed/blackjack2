@@ -6,13 +6,11 @@ TODO Getting 5 cards beats other hands of the same value
 
 TODO Add functionality to add as many players as needed, ask for names.
 
-TODO ComputerPlayer strategy - see TODO in ComputerPlayer class
+TODO Tests for ComputerPlayer strategy
 
 TODO TESTS!! mocking input for HumanPlayer objects
 
-TODO clean up code
-
-TODO magic numbers - Final variables in appropriate places e.g. MAX_CARDS_IN_HAND etc.
+TODO clean up code. Organize methods, add comments, remove magic numbers
 */
 
 
@@ -20,12 +18,13 @@ public class Game {
 
 	final static int MAX_CARDS_IN_HAND = 5; //variable in Hand and Player
 	final static int TARGET_SCORE = 21;
+	final static int DEALER_MUST_HIT_UNTIL = 17;
 
 	static UI ui;
 
 	public static void main(String[] args) {
 
-		ui = new UI();
+		createUI();
 
 		Game game = new Game();
 		game.play();
@@ -34,8 +33,11 @@ public class Game {
 
 	}
 
+	public static void createUI(){
+		ui = new UI();
+	}
 
-	public void play() {
+	private void play() {
 
 		//Can modify this to add more human players and computer players if needed
 

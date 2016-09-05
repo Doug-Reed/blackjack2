@@ -2,7 +2,7 @@ package com.blackjack;
 
 public class Card {
 
-	String suit;
+	Suit suit;
 	int value;
 	String specialTypeOfCard;
 	
@@ -12,10 +12,19 @@ public class Card {
 	public final static String QUEEN = "queen";
 	public final static String KING = "king";
 
-	/// special represents a card whose value is not the same as the face value
-	// So ace, J Q and K
 
-	public Card(int v, String s, String special){
+	public enum Suit {
+		HEARTS("h"), SPADES("s"), CLUBS("c"), DIAMONDS("d");
+		private String value;
+		private Suit(String value) {
+			this.value = value;
+		}
+	}
+
+
+	// specialTypeOfCard represents a card whose value is not the same as the face value
+	// So Ace, J Q, and K
+	public Card(int v, Suit s, String special){
 		this.value = v;
 		this.suit = s;
 		this.specialTypeOfCard = special;
@@ -23,19 +32,18 @@ public class Card {
 	}
 
 	//For creating cards in range 2 - 10 - these have values equivalent to face value
-
-	public Card(int v, String s){
+	public Card(int v, Suit s){
 		this.value = v;
 		this.suit = s;
 		this.specialTypeOfCard = NOT_FACE_NOT_ACE;
 		
 	}
 
-	public String getSuit() {
+	public Suit getSuit() {
 		return this.suit;
 	}
 
-	public void setSuit(String suit) {
+	public void setSuit(Suit suit) {
 		this.suit = suit;
 	}
 
@@ -58,20 +66,20 @@ public class Card {
 	
 	public String toString(){
 		
-		if (specialTypeOfCard == ACE) {
+		if (specialTypeOfCard.equals(ACE)) {
 			return ("A"+this.suit);
 			
-		} else if (specialTypeOfCard == JACK){
+		} else if (specialTypeOfCard.equals(JACK)){
 			return ("J"+this.suit);
 		
-		} else if (specialTypeOfCard == QUEEN){
+		} else if (specialTypeOfCard.equals(QUEEN)){
 		return ("Q"+this.suit);
 		
-		} else if (specialTypeOfCard == KING){
+		} else if (specialTypeOfCard.equals(KING)){
 			return ("K"+this.suit);
 		}
 
-		return (this.value+this.suit);
+		return (this.value + "" + this.suit);
 		
 		
 	}

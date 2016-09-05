@@ -6,8 +6,7 @@ public class PlayerManager {
 
 	LinkedList<Player> players;
 
-	public final int MAX_PLAYERS = 10; //for a single deck, anyway
-
+	public final int MAX_PLAYERS = 10; //for a single deck, anyway, to allow for a possible max of 5 cards per player
 
 	public PlayerManager(LinkedList<Player> players){
 		this.players = players;
@@ -27,7 +26,6 @@ public class PlayerManager {
 
 	public void add(Player player) {
 		//refuse to add more than 10 players
-
 		if (players.size() < MAX_PLAYERS) {
 			player.setManager(this);
 			players.add(player);
@@ -36,6 +34,9 @@ public class PlayerManager {
 			Game.ui.output("There's already " + MAX_PLAYERS + " in the game. Can't add " + player.getName());
 		}
 	}
+
+
+	/* Methods to manage which player is the dealer */
 
 	private void setDealer() {
 
@@ -49,9 +50,32 @@ public class PlayerManager {
 	}
 
 
+	public Player getDealer() {
+		for (Player p : players) {
+			if (p.isDealer()) {
+				return p;
+			}
+		}
+		return null;
+	}
+
+	/* Enable all players to have a chance at being the dealer, in turn */
+	public void rotateDealer() {
+
+		Player lastDealer = players.removeLast();  //remove last player,
+		lastDealer.setDealer(false);
+		players.addFirst(lastDealer);              //add them at the beginning.
+		//set last player to be dealer
+		setDealer();
+	}
+
+
+	/* Methods used by Players to figure out status of the game,
+	e.g. how many players left to play, what's the score to beat etc.*/
 
 	public int getPlayersLeftToPlay() {
 
+		//Count all Players with hasPlayed == false
 		int playersLeft = 0;
 
 		for (Player p : players) {
@@ -64,40 +88,12 @@ public class PlayerManager {
 
 	}
 
-	//
-	public int[] getScoreOfPlayersWhoHavePlayed() {
-//		LinkedList<Player> theOtherPlayers = (LinkedList)players.clone();
-//		theOtherPlayers.remove(butNotThisPlayer);
-//		int[] otherScores = new int[theOtherPlayers.size()];
-//		for (int p = 0 ; p < theOtherPlayers.size() ; p++) {
-//			otherScores[p] = theOtherPlayers.get(p).getHandOfCards().getScoreClosestTo21();
-//		}
 
-		LinkedList<Player> havePlayed = new LinkedList();
-		for (Player p : players) {
-			if (p.hasPlayed) {
-				havePlayed.add(p);
-			}
-		}
-
-		int[] otherScores = new int[havePlayed.size()];
-
-		for (int p = 0 ; p < havePlayed.size() ; p++) {
-			otherScores[p] = havePlayed.get(p).getHandOfCards().getScoreClosestTo21();
-		}
-
-		return otherScores;
-	}
-
-
-	//
-	public int getMaxKnownScoreBySomeoneElse(Player thisPlayer) {
-
-		LinkedList<Player> theOtherPlayers = (LinkedList)players.clone();
-		theOtherPlayers.remove(thisPlayer);
+	//Out of the Players who have played, what's the highest score?
+	public int getMaxScore() {
 
 		int max = 0;
-		for (Player p : theOtherPlayers) {
+		for (Player p : players) {
 			if (p.hasPlayed) {
 				int score = p.getHandOfCards().getScoreClosestTo21();
 				if (score > max) {
@@ -108,10 +104,10 @@ public class PlayerManager {
 		return max;
 	}
 
-
+	//Check if everyone is bust (except for the current player)
 	public boolean everyoneElseBust(Player exceptThisPlayer){
 
-		LinkedList<Player> theOtherPlayers = (LinkedList)players.clone();
+		LinkedList<Player> theOtherPlayers = (LinkedList) (players.clone());
 		theOtherPlayers.remove(exceptThisPlayer);
 
 		for (Player p : theOtherPlayers) {
@@ -121,8 +117,8 @@ public class PlayerManager {
 		}
 
 		return true;
-
 	}
+
 
 
 	public void printWins() {
@@ -134,31 +130,13 @@ public class PlayerManager {
 	}
 
 
-	public Player getDealer() {
-		for (Player p : players) {
-			if (p.isDealer()) {
-				return p;
-			}
-		}
-		return null;
-	}
 
-
-	/* Enable all players to have a chance at being the dealer, in turn */
-	// TODO moves dealer from end of list to start.
-	public void rotateDealer() {
-	
-		Player lastDealer = players.removeLast();  //remove last player,
-		lastDealer.setDealer(false);
-		players.addFirst(lastDealer);              //add them at the beginning.
-		//set last player to be dealer
-		setDealer();
-	}
 
 	public void printFinalWins() {
 
 		int mostWins= 0;
-		String winnerName = "Computer";
+		String winnerName = null;
+
 		for (Player p : players){
 			int wins = p.getWins();
 			System.out.println(p.getName() + " won " + wins + " times");
@@ -167,12 +145,16 @@ public class PlayerManager {
 				winnerName = p.getName();
 			}
 		}
-		System.out.println("The winner is " + winnerName);
+
+		Game.ui.output("The winner is " + winnerName);
 		
 	}
 	
+	//TODO with two equal high scores, the dealer is the winner
+	//TODO otherwise a hand with 5 cards is the winner
+	//TODO how else should ties be decided?
 
-	Player determineRoundWinner() {
+	public Player determineRoundWinner() {
 
 		boolean everyoneBust = true;
 
@@ -208,7 +190,7 @@ public class PlayerManager {
 
 	}
 
-		public LinkedList<Player> getPlayersList() {
-			return players;
-		}
+	public LinkedList<Player> getPlayersList() {
+		return players;
+	}
 }

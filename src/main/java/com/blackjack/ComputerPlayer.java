@@ -1,21 +1,14 @@
 package com.blackjack;
 
-import com.oracle.tools.packager.Log;
-
-import java.util.Arrays;
-
 public class ComputerPlayer extends Player {
 
-	ComputerPlayer(String name) {
+	public ComputerPlayer(String name) {
 		super(name);
-		
 	}
-
 
 	public final int SENSIBLE_TARGET = 17;
 
-	/* TODO The logic here:
-
+	/*
 	* Three cases:
 	*
 	* There are other players left to play
@@ -32,30 +25,26 @@ public class ComputerPlayer extends Player {
 
 	public void playHand(Deck cards){
 
-
 		Game.ui.output(name + " has " + handOfCards + " ( totals " + handOfCards.getScoreClosestTo21() + " )");
 		Game.ui.output(name + " is thinking....");
 
 		while (shouldContinue()) {
-		//while (this.handOfCards.getScoreClosestTo21() < 17) {
 			//take another card
 			handOfCards.addCard(cards.deal());
 			Game.ui.output(name + " takes another card and now has " + handOfCards + " ( totals " + handOfCards.getScoreClosestTo21() + " )");
 		}
 
 		this.hasPlayed = true;
-
 		Game.ui.output(this.name + "'s turn is over\n");
 	}
 
 	private boolean shouldContinue() {
 
-		int[] otherScores = manager.getScoreOfPlayersWhoHavePlayed();
 		int thisPlayerScore = handOfCards.getScoreClosestTo21();
 		int playersLeftToPlay = manager.getPlayersLeftToPlay();
-		int maxScoreBySomeoneElse = manager.getMaxKnownScoreBySomeoneElse(this);
+		int maxScoreBySomeoneElse = manager.getMaxScore();
 
-		if (handOfCards.getScoreClosestTo21() == 21) {
+		if (handOfCards.getScoreClosestTo21() == Game.TARGET_SCORE) {
 			System.out.println("21 - max score!");
 			return false;
 		}
@@ -65,13 +54,13 @@ public class ComputerPlayer extends Player {
 			return false;
 		}
 
-		if (handOfCards.size() == 5) {
+		if (handOfCards.size() == Game.MAX_CARDS_IN_HAND) {
 			Game.ui.output("I've got 5 cards, can't take another");
 			return false;
 		}
 
 		//If dealer, must play until at least 17
-		if (isDealer && thisPlayerScore < 17) {
+		if (isDealer && thisPlayerScore < Game.DEALER_MUST_HIT_UNTIL) {
 			Game.ui.output("I am the dealer and score less than 21, must take another card");
 			return true;
 		}
@@ -100,11 +89,11 @@ public class ComputerPlayer extends Player {
 				Game.ui.output("my score less than or equal to the target " + targetScore);
 				return true;
 			}
-			Log.debug("my score is more than my target of " + targetScore);
+			Game.ui.output("my score is more than my target of " + targetScore);
 			return false;
 		}
 
-		// If this player is the last one
+		// If this player is the last one to play. Consider other player's hands.
 		else {
 
 			if (manager.everyoneElseBust(this)) {
@@ -123,9 +112,5 @@ public class ComputerPlayer extends Player {
 				return true;
 			}
 		}
-
-
 	}
-	
-
 }

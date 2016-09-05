@@ -5,7 +5,6 @@ import java.util.Random;
 
 public class Deck {
 
-	private final String suits[] = {"H", "C", "S", "D"};
 	private LinkedList<Card> cards;
 
 	protected Random rng;
@@ -14,31 +13,30 @@ public class Deck {
 		this.rng = rng;
 	}
 
-
 	public Deck() {
 
 		rng = new Random();
 
 		this.cards = new LinkedList<Card>();
 
-		for (int s = 0 ; s < 4 ; s++){
+		for (Card.Suit suit : Card.Suit.values()){
 
 			for (int v = 1 ; v <= 13 ; v++){
 				if (v == 1) {
-					Card c = new Card(v, suits[s], Card.ACE);
+					Card c = new Card(v, suit, Card.ACE);
 					cards.add(c);
 				}
 				else if (v > 1 && v <= 10) {
-					Card c = new Card(v, suits[s], Card.NOT_FACE_NOT_ACE);
+					Card c = new Card(v, suit, Card.NOT_FACE_NOT_ACE);
 					cards.add(c);
 				} else if (v == 11) {
-					Card c = new Card(10, suits[s], Card.JACK);
+					Card c = new Card(10, suit, Card.JACK);
 					cards.add(c);	
 				} else if (v == 12) {
-					Card c = new Card(10, suits[s], Card.QUEEN);
+					Card c = new Card(10, suit, Card.QUEEN);
 					cards.add(c);	
 				} else if (v == 13) {
-					Card c = new Card(10, suits[s], Card.KING);
+					Card c = new Card(10, suit, Card.KING);
 					cards.add(c);	
 				}
 			}
