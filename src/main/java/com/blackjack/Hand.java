@@ -40,12 +40,7 @@ public class Hand {
 		return handOfCards.size();
 
 	}
-	public void setBust(){
-		//make hand empty. Then score (which iterates over the list) will still work.
-		isBust = true;
-		this.handOfCards.clear();
-		
-	}
+
 	public int getMinimumScore() {
 		
 		//Assume ace is low.
@@ -111,12 +106,23 @@ public class Hand {
 
 		if (score > Game.TARGET_SCORE) {
 			setBust();
+
 			return true;
 		}
 
 		return false;
 		
 	}
+
+
+
+	public void setBust(){
+		//make hand empty. Then score (which iterates over the list) will still work.
+		isBust = true;
+		this.handOfCards.clear();
+
+	}
+
 	
 	
 	public String toString(){

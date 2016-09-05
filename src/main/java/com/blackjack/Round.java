@@ -20,10 +20,7 @@ public class Round {
 
 	public void play(){
 
-		Game.ui.output("New round. The dealer is " + playerManager.getDealer());
-
 		//deal hands to computer and players
-	
 
 		for (Player p : playerManager.getPlayersList()){
 

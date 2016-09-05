@@ -11,6 +11,8 @@ TODO ComputerPlayer strategy - see TODO in ComputerPlayer class
 TODO TESTS!! mocking input for HumanPlayer objects
 
 TODO clean up code
+
+TODO magic numbers - Final variables in appropriate places e.g. MAX_CARDS_IN_HAND etc.
 */
 
 

@@ -38,6 +38,12 @@ public class PlayerManager {
 	}
 
 	private void setDealer() {
+
+		//Clear being the dealer from everyone else
+		for (Player p : players) {
+			p.setDealer(false);
+		}
+
 		//Make the last player in the list the dealer
 		players.getLast().setDealer(true);
 	}
@@ -49,7 +55,7 @@ public class PlayerManager {
 		int playersLeft = 0;
 
 		for (Player p : players) {
-			if (p.hasPlayed) {
+			if (!p.hasPlayed) {
 				playersLeft++;
 			}
 		}
@@ -85,18 +91,21 @@ public class PlayerManager {
 
 
 	//
-	public int getMaxScore() {
+	public int getMaxKnownScoreBySomeoneElse(Player thisPlayer) {
+
+		LinkedList<Player> theOtherPlayers = (LinkedList)players.clone();
+		theOtherPlayers.remove(thisPlayer);
 
 		int max = 0;
-		for (Player p : players) {
-			int score = p.getHandOfCards().getScoreClosestTo21();
-			if (score > max) {
-				max = score;
+		for (Player p : theOtherPlayers) {
+			if (p.hasPlayed) {
+				int score = p.getHandOfCards().getScoreClosestTo21();
+				if (score > max) {
+					max = score;
+				}
 			}
 		}
-
 		return max;
-
 	}
 
 

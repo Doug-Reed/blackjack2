@@ -14,7 +14,6 @@ public abstract class Player {
 	public boolean isDealer() {
 		return isDealer;
 	}
-
 	public void setDealer(boolean isDealer) {
 		this.isDealer = isDealer;
 	}
@@ -62,7 +61,8 @@ public abstract class Player {
 
 	@Override
 	public String toString(){
-		return name;
+		String dealer = (isDealer) ? "* is current dealer *" : "(is not dealer)";
+		return name + " " + dealer;
 	}
 
 
