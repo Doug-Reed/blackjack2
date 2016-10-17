@@ -53,8 +53,8 @@ public class Game {
 		playerManager.add(linux);
 		playerManager.add(pc);
 
-//		playerManager.add(human);      // If you want to play too, uncomment this
-//		playerManager.add(human2);
+//		playerManager.add(human);      // TODO If you want to play too, uncomment this line
+//		playerManager.add(human2);     // And uncomment this if you want to add another human
 
 
 		boolean playAgain = true;

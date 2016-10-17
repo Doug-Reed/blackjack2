@@ -45,7 +45,7 @@ public class ComputerPlayer extends Player {
 		int maxScoreBySomeoneElse = manager.getMaxScore();
 
 		if (handOfCards.getScoreClosestTo21() == Game.TARGET_SCORE) {
-			System.out.println("21 - max score!");
+			Game.ui.output("21 - max score!");
 			return false;
 		}
 

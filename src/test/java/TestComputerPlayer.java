@@ -4,7 +4,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.LinkedList;
-import java.util.List;
+
+/*TODO finish tests!*/
+
+import static junit.framework.TestCase.assertEquals;
 
 public class TestComputerPlayer {
 
@@ -112,7 +115,7 @@ public class TestComputerPlayer {
         //Verify Linux took two cards
 
         //Assert.assertTrue(linux.getHandOfCards().toString().contains(mockCardString));
-        Assert.assertEquals(linux.getHandOfCards().size(), 4);
+        assertEquals(linux.getHandOfCards().size(), 4);
 
         //Add some more cards to MockDeck
         mockDeck.addNextCard(twoSpades);     //score will be 19...
