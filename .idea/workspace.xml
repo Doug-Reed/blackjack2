@@ -1,32 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="08a96267-6af4-420d-ab04-13de0c05a7bc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/blackjack/Card$Suit.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/blackjack/Card.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/blackjack/ComputerPlayer.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/blackjack/Deck.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/blackjack/Game.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/blackjack/Hand.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/blackjack/HumanPlayer.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/blackjack/Player.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/blackjack/PlayerManager.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/blackjack/Round.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/test-classes/TestComputerPlayer$MockDeck.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/test-classes/TestComputerPlayer.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/test-classes/TestDeck$MockRandomNumberGenerator.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/test-classes/TestDeck.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/test-classes/TestGame.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/test-classes/TestHumanPlayer.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/test-classes/TestPlayerManager.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/test-classes/TestRound.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/blackjack/UI.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/MANIFEST.MF" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/blackjack/ComputerPlayer.java" afterPath="$PROJECT_DIR$/src/main/java/com/blackjack/ComputerPlayer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/blackjack/Game.java" afterPath="$PROJECT_DIR$/src/main/java/com/blackjack/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/TestComputerPlayer.java" afterPath="$PROJECT_DIR$/src/test/java/TestComputerPlayer.java" />
-    </list>
+    <list default="true" id="08a96267-6af4-420d-ab04-13de0c05a7bc" name="Default" comment="" />
     <ignored path="Blackjack.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -888,7 +863,7 @@
       <workItem from="1474575362341" duration="71000" />
       <workItem from="1475422453312" duration="811000" />
       <workItem from="1475517221141" duration="260000" />
-      <workItem from="1476370965495" duration="1376000" />
+      <workItem from="1476370965495" duration="1459000" />
     </task>
     <task id="LOCAL-00001" summary="Blackjack - adding computer strategy">
       <created>1473098809837</created>
@@ -912,7 +887,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22697000" />
+    <option name="totallyTimeSpent" value="22780000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="45" y="81" width="1382" height="799" extended-state="0" />
